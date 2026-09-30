@@ -1,6 +1,3 @@
-{"engine":"Google Cloud Text-to-Speech","runtime":"cloud","free":"free-tier","input":["SSML","text"],"interface":["API","REST","gRPC"],"notes":"無料枠あり。課金有効化が必要。"}
-{"engine":"Azure Speech","runtime":"cloud","free":"F0-free-tier","input":["SSML","text"],"interface":["API","REST","Speech SDK"],"notes":"F0でリアルタイムTTS。SSML REST API。"}
-{"engine":"Kokoro / Kokoro-FastAPI","runtime":"local","free":"OSS-local-free","input":["JSON"],"interface":["API","OpenAI-compatible REST"],"notes":"ローカル実行。JSON POSTで音声生成。"}
-{"engine":"MOSS-TTSD","runtime":"local","free":"OSS-local-free","input":["JSONL"],"interface":["CLI","local server"],"notes":"JSONLをCLIから投入可能。ローカル推論。"}
-{"principle":"TTS IR","rule":"SSML is a compiler target, not the canonical IR","pipeline":"talk.md -> parser -> TTS IR JSONL -> provider compiler -> provider input -> TTS"}
-{"invariant":"say.text","rule":"spoken text only; markup must never be sent literally to TTS","examples":["<break>","[emotion]","{{tag}}"]}
+{"engine":"Kokoro-82M","runtime":"local","free":"OSS","model_size":"82M parameters","weights_size":"~325MB fp32 / ~160MB q8f16 / ~92MB int8 ONNX","ram":"CPU wrapper reports ~500-800MB idle","gpu":"not required; CPU possible","interface":"API (REST/JSON), some CLI/wrappers","input":"JSON","notes":"軽量ローカル候補。","source":"GitHub / Kokoro ONNX & wrappers"}
+{"engine":"MOSS-TTSD-v1.0","runtime":"local","free":"OSS","model_size":"8B parameters","weights_size":"not fixed in source memo","gpu":"legacy bf16: ~6.1GB for 120s, ~6.9GB for 600s; current llama.cpp release says 8B fits on 8GB GPU","ram":"GPU推奨","interface":"CLI / local server","input":"JSONL-style / local API","notes":"大型。長尺・多話者向け。","source":"OpenMOSS GitHub"}
+{"principle":"local-spec","rule":"For every local engine record model parameters, weight/download size when known, RAM/VRAM requirement, CPU/GPU requirement, and API/CLI interface."}
