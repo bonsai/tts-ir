@@ -1,0 +1,6 @@
+{"op":"say","text":"こんにちは。今日はTTS IRについて話します。"}
+{"op":"pause","ms":500}
+{"op":"say","text":"文章には構造があります。","emphasis":"strong"}
+{"op":"say","text":"声にも、構造があります。","rate":0.9}
+{"op":"pause","ms":700}
+{"op":"say","text":"……まあ、知らんけど。","role":"aside"}
