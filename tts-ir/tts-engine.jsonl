@@ -1,0 +1,11 @@
+{"engine":"Google Cloud Text-to-Speech","input":["text","SSML"],"controls":["pause","rate","pitch","volume","pronunciation","voice"],"notes":"SSMLをTTS IRのコンパイル先にできる。Chirp/Gemini系は機能差に注意。"}
+{"engine":"Google Gemini TTS","input":["text","natural-language prompt"],"controls":["style","emotion","accent","pace","single-speaker","multi-speaker"],"notes":"意味的な発話制御と相性がよい。TTS IRから専用入力へコンパイルする。"}
+{"engine":"Azure Speech","input":["text","SSML"],"controls":["voice","style","role","rate","pitch","volume","pause","pronunciation","multi-voice"],"notes":"SSMLによる細粒度制御が豊富。"}
+{"engine":"Amazon Polly","input":["text","SSML"],"controls":["pause","rate","pitch","volume","pronunciation","voice"],"notes":"SSMLをコンパイル先として利用できる。"}
+{"engine":"ElevenLabs Multilingual v2","input":["text","SSML-subset"],"controls":["pause","phoneme-on-supported-models","voice"],"notes":"モデルごとにSSML対応範囲が異なる。"}
+{"engine":"ElevenLabs v3/v4","input":["text","audio-tags","punctuation"],"controls":["expression","emotion","audio-tags","text-structure"],"notes":"SSML breakではなくモデル固有の音声タグ・句読点・構造を使う。IRから別コンパイラを用意する。"}
+{"engine":"Kokoro","input":["text"],"controls":["voice","speed"],"notes":"実装・ラッパーごとの差があるため、薄いadapterで吸収する。"}
+{"engine":"StyleTTS2","input":["text","implementation-specific"],"controls":["style","speaker","prosody"],"notes":"研究・実装依存のためprovider adapter経由にする。"}
+{"engine":"MOSS-TTSD","input":["JSONL-style data"],"controls":["multi-speaker","dialogue"],"notes":"JSONL系の入力を扱えるが、bonsai TTS IRそのものとは別物としてadapter化する。"}
+{"principle":"TTS IR","rule":"SSML is a compiler target, not the canonical IR","pipeline":"talk.md -> parser -> TTS IR JSONL -> provider compiler -> provider input -> TTS"}
+{"invariant":"say.text","rule":"spoken text only; markup must never be sent literally to TTS","examples":["<break>","[emotion]","{{tag}}"]}
