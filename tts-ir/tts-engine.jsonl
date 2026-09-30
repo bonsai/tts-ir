@@ -1,6 +1,6 @@
-{"engine":"Google Cloud Text-to-Speech","input":["text","SSML"],"controls":["pause","rate","pitch","volume","pronunciation","voice"],"notes":"SSMLをTTS IRのコンパイル先にできる。Chirp/Gemini系は機能差に注意。"}
-{"engine":"Azure Speech","input":["text","SSML"],"controls":["voice","style","role","rate","pitch","volume","pause","pronunciation","multi-voice"],"notes":"SSMLによる細粒度制御が豊富。"}
-{"engine":"Kokoro","input":["text"],"controls":["voice","speed"],"notes":"実装・ラッパーごとの差があるため、薄いadapterで吸収する。"}
-{"engine":"MOSS-TTSD","input":["JSONL-style data"],"controls":["multi-speaker","dialogue"],"notes":"JSONL系の入力を扱えるが、bonsai TTS IRそのものとは別物としてadapter化する。"}
+{"engine":"Google Cloud Text-to-Speech","runtime":"cloud","free":"free-tier","input":["SSML","text"],"interface":["API","REST","gRPC"],"notes":"無料枠あり。課金有効化が必要。"}
+{"engine":"Azure Speech","runtime":"cloud","free":"F0-free-tier","input":["SSML","text"],"interface":["API","REST","Speech SDK"],"notes":"F0でリアルタイムTTS。SSML REST API。"}
+{"engine":"Kokoro / Kokoro-FastAPI","runtime":"local","free":"OSS-local-free","input":["JSON"],"interface":["API","OpenAI-compatible REST"],"notes":"ローカル実行。JSON POSTで音声生成。"}
+{"engine":"MOSS-TTSD","runtime":"local","free":"OSS-local-free","input":["JSONL"],"interface":["CLI","local server"],"notes":"JSONLをCLIから投入可能。ローカル推論。"}
 {"principle":"TTS IR","rule":"SSML is a compiler target, not the canonical IR","pipeline":"talk.md -> parser -> TTS IR JSONL -> provider compiler -> provider input -> TTS"}
 {"invariant":"say.text","rule":"spoken text only; markup must never be sent literally to TTS","examples":["<break>","[emotion]","{{tag}}"]}
