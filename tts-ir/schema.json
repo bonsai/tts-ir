@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TTS Intermediate Representation",
+  "description": "Provider-neutral JSONL record schema for spoken talk production.",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["op", "text"],
+      "properties": {
+        "op": { "const": "say" },
+        "text": { "type": "string" },
+        "speaker": { "type": "string" },
+        "role": { "type": "string" },
+        "style": { "type": "string" },
+        "rate": { "type": "number", "exclusiveMinimum": 0 },
+        "pitch": { "type": "number" },
+        "volume": { "type": "number" },
+        "emphasis": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["op", "ms"],
+      "properties": {
+        "op": { "const": "pause" },
+        "ms": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["op", "speaker"],
+      "properties": {
+        "op": { "const": "speaker" },
+        "speaker": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["op", "style"],
+      "properties": {
+        "op": { "const": "style" },
+        "style": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  ]
+}
