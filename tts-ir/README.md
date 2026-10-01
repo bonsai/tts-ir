@@ -1,8 +1,10 @@
 # TTS IR
 
-TTS Intermediate Representation for `youtube-3min`.
+Provider-neutral TTS Intermediate Representation.
 
-The IR describes **how a talk should be spoken**, independently of any TTS provider. Providers such as SSML-based engines can be compiler targets.
+This directory is intentionally standalone. It does not depend on `youtube-3min`, `talkscripts`, or a specific TTS provider.
+
+The IR describes **how a talk should be spoken**. Providers such as SSML-based engines can be compiler targets.
 
 ## Pipeline
 
@@ -29,3 +31,5 @@ Example:
 ```
 
 Keep this layer provider-neutral. Compilation to SSML or a provider API belongs downstream.
+
+Talk scripts live elsewhere; this IR accepts the boundary format and does not own the content.
